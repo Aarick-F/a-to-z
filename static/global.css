@@ -1,0 +1,15 @@
+body {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-size: 300% 150%;
+  background-position: bottom;
+  background-image: linear-gradient(to top, #333333, #dd1818);
+}
+
+#main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
