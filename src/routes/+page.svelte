@@ -53,6 +53,9 @@
   }
 </script>
 
+<svelte:head>
+  <title>A-to-Z</title>
+</svelte:head>
 <svelte:window on:keydown|preventDefault={onKeyDown} />
 
 <section>
