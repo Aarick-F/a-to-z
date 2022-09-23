@@ -9,6 +9,7 @@ body {
   background-size: 300% 150%;
   background-position: bottom;
   background-image: linear-gradient(to top, #333333, #dd1818);
+  overflow: hidden;
 }
 
 #main {

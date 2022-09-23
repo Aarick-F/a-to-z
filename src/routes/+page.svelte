@@ -7,6 +7,7 @@
   import zefPog from "$lib/assets/zef/ZefPog.png";
   import zefTalk from "$lib/assets/zef/ZefTalk.png";
   import zefMinkus from "$lib/assets/zef/ZefMinkus.png";
+  import dangDance from "$lib/assets/dangdance.gif";
   const zef = {
     smile: zefSmile,
     talk: zefTalk,
@@ -22,18 +23,19 @@
   let zefState = "smile";
   let averState = "smile";
   let hideTitle = false;
+  let danceParty = false;
   function onKeyDown(e) {
     switch (e.key) {
-      case "v":
+      case "u":
         zefState = "smile";
         break;
-      case "b":
+      case "i":
         zefState = "talk";
         break;
-      case "n":
+      case "p":
         zefState = "pog";
         break;
-      case "m":
+      case "o":
         zefState = "minkus";
         break;
       case "q":
@@ -42,14 +44,33 @@
       case "w":
         averState = "talk";
         break;
-      case "e":
+      case "r":
         averState = "pog";
         break;
-      case "r":
+      case "e":
         averState = "minkus";
+        break;
+      case "z":
+        averState = "smile";
+        zefState = "smile";
+        break;
+      case "x":
+        averState = "talk";
+        zefState = "talk";
+        break;
+      case "c":
+        averState = "minkus";
+        zefState = "minkus";
+        break;
+      case "v":
+        averState = "pog";
+        zefState = "pog";
         break;
       case "0":
         hideTitle = !hideTitle;
+        break;
+      case "=":
+        danceParty = !danceParty;
         break;
       default:
         break;
@@ -63,19 +84,26 @@
 <svelte:window on:keydown|preventDefault={onKeyDown} />
 
 <section>
+  <div class="danceParty {danceParty ? "danceTime" : "hide"}">
+    {#each { length: 171 } as _, i}
+      <img class="dance" src={dangDance} alt="A dancing froge" />
+    {/each}
+  </div>
   <div class="sideline">
     <img
       class="avatar aver {averState === 'pog' ? 'pog-aver' : ''}"
       src={aver[averState]}
       alt="average_atlas's amazing visage"
     />
-    <h2 class="screenName {averState === 'pog' ? 'pog-neutral' : ''}">average_atlas</h2>
+    <h2 class="screenName {averState === 'pog' ? 'pog-neutral' : ''}">
+      average_atlas
+    </h2>
   </div>
   <div class="feature">
-    <div class="presentation {hideTitle ? "hide" : "show"}">
+    <div class="presentation {hideTitle ? 'hide' : 'show'}">
       <h2>FROM</h2>
       <h1>A -> Z</h1>
-      <h3>A 596 Year-In-Review</h3>
+      <h3>Hire-or-Fire 2022</h3>
     </div>
   </div>
   <div class="sideline">
@@ -93,12 +121,27 @@
     flex: 1;
     display: flex;
   }
+  .danceParty {
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    z-index: 1;
+    transition: 1s;
+  }
+  .danceTime {
+    opacity: 0.25;
+  }
   .sideline {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+    z-index: 2;
   }
   .feature {
     flex: 2;
@@ -106,6 +149,7 @@
     flex-direction: column;
     align-items: center;
     padding: 3rem 1rem;
+    z-index: 2;
   }
   .presentation {
     width: 100%;
@@ -117,6 +161,7 @@
     justify-content: center;
     color: #eee;
     transition: 0.5s;
+    z-index: 2;
   }
   .presentation h2 {
     font-size: 4rem;
@@ -242,6 +287,5 @@
   }
 
   @keyframes spotlight {
-
   }
 </style>
