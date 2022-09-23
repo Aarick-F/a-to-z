@@ -21,6 +21,7 @@
   };
   let zefState = "smile";
   let averState = "smile";
+  let hideTitle = false;
   function onKeyDown(e) {
     switch (e.key) {
       case "v":
@@ -47,6 +48,9 @@
       case "r":
         averState = "minkus";
         break;
+      case "0":
+        hideTitle = !hideTitle;
+        break;
       default:
         break;
     }
@@ -65,10 +69,13 @@
       src={aver[averState]}
       alt="average_atlas's amazing visage"
     />
+    <h2 class="screenName {averState === 'pog' ? 'pog-neutral' : ''}">average_atlas</h2>
   </div>
   <div class="feature">
-    <div class="presentation">
-      <h1>VIDEO HIGHLIGHTS GO HERE</h1>
+    <div class="presentation {hideTitle ? "hide" : "show"}">
+      <h2>FROM</h2>
+      <h1>A -> Z</h1>
+      <h3>A 596 Year-In-Review</h3>
     </div>
   </div>
   <div class="sideline">
@@ -77,6 +84,7 @@
       src={zef[zefState]}
       alt="zeflyn's amazing visage"
     />
+    <h2 class="screenName {zefState === 'pog' ? 'pog-neutral' : ''}">zeflyn</h2>
   </div>
 </section>
 
@@ -84,14 +92,13 @@
   section {
     flex: 1;
     display: flex;
-    font-family: Arial, Helvetica, sans-serif;
   }
   .sideline {
     flex: 1;
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    /* background: indianred; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
   }
   .feature {
     flex: 2;
@@ -103,16 +110,33 @@
   .presentation {
     width: 100%;
     height: 60vh;
-    border: 2px solid #eee;
     border-radius: 15px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     color: #eee;
+    transition: 0.5s;
+  }
+  .presentation h2 {
+    font-size: 4rem;
+    /* letter-spacing: 0.15rem; */
+    margin: 0;
+    text-shadow: 3px 3px 0px steelblue;
+  }
+  .presentation h1 {
+    font-size: 14rem;
+    margin: 0;
+    text-shadow: 3px 3px 0px steelblue;
+  }
+  .presentation h3 {
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 3px 3px 0px steelblue;
   }
   .avatar {
     width: 256px;
-    margin-bottom: 8rem;
+    margin-bottom: 6rem;
   }
   .aver {
     transform: rotate(-15deg) scaleX(-1);
@@ -122,12 +146,27 @@
     transform: rotate(15deg);
     animation: float-zef 5s ease-in-out infinite;
   }
+  .screenName {
+    font-size: 3rem;
+    margin: 0 0 2rem 0;
+    color: #eee;
+    text-shadow: 3px 3px 0px steelblue;
+    /* letter-spacing: 0.15rem; */
+  }
   .pog-zef {
     animation: pog-zef 0.1s step-end infinite;
   }
-
   .pog-aver {
     animation: pog-aver 0.1s step-end infinite;
+  }
+  .pog-neutral {
+    animation: pog-neutral 0.1s step-end infinite;
+  }
+  .hide {
+    opacity: 0;
+  }
+  .show {
+    opacity: 1;
   }
 
   @keyframes float-aver {
@@ -141,7 +180,26 @@
       transform: translateY(50px) rotate(15deg);
     }
   }
-
+  @keyframes pog-neutral {
+    0% {
+      transform: translate(-2px, 2px);
+    }
+    20% {
+      transform: translate(1px, -3px);
+    }
+    40% {
+      transform: translate(-1px, 0px);
+    }
+    60% {
+      transform: translate(3px, -1px);
+    }
+    80% {
+      transform: translate(-2px, 0px);
+    }
+    100% {
+      transform: translate(0px, 0px);
+    }
+  }
   @keyframes pog-zef {
     0% {
       transform: translate(-2px, 2px) rotate(15deg);
@@ -181,5 +239,9 @@
     100% {
       transform: translate(0px, 0px) rotate(-15deg) scaleX(-1);
     }
+  }
+
+  @keyframes spotlight {
+
   }
 </style>
