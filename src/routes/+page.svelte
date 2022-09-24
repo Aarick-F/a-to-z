@@ -69,6 +69,9 @@
       case "0":
         hideTitle = !hideTitle;
         break;
+      case "1":
+        titleVisible = !titleVisible;
+        break;
       case "=":
         danceParty = !danceParty;
         break;
@@ -76,6 +79,9 @@
         break;
     }
   }
+
+  let featureContent = "A -> Z";
+  let titleVisible = false;
 </script>
 
 <svelte:head>
@@ -84,7 +90,7 @@
 <svelte:window on:keydown|preventDefault={onKeyDown} />
 
 <section>
-  <div class="danceParty {danceParty ? "danceTime" : "hide"}">
+  <div class="danceParty {danceParty ? 'danceTime' : 'hide'}">
     {#each { length: 171 } as _, i}
       <img class="dance" src={dangDance} alt="A dancing froge" />
     {/each}
@@ -101,9 +107,9 @@
   </div>
   <div class="feature">
     <div class="presentation {hideTitle ? 'hide' : 'show'}">
-      <h2>FROM</h2>
-      <h1>A -> Z</h1>
-      <h3>Hire-or-Fire 2022</h3>
+      <h2>{titleVisible ? '" Moments of Questionable Cleanliness "' : "FROM"}</h2>
+      <h1>{titleVisible ? "" : "A -> Z"}</h1>
+      <h3>{titleVisible ? "" : "Hire-or-Fire 2022"}</h3>
     </div>
   </div>
   <div class="sideline">
@@ -164,6 +170,7 @@
     z-index: 2;
   }
   .presentation h2 {
+    text-align: center;
     font-size: 4rem;
     /* letter-spacing: 0.15rem; */
     margin: 0;
@@ -181,19 +188,19 @@
   }
   .avatar {
     width: 256px;
-    margin-bottom: 6rem;
+    margin-bottom: 4rem;
   }
   .aver {
     transform: rotate(-15deg) scaleX(-1);
-    animation: float-aver 5s ease-in-out infinite;
+    /* animation: float-aver 5s ease-in-out infinite; */
   }
   .zef {
     transform: rotate(15deg);
-    animation: float-zef 5s ease-in-out infinite;
+    /* animation: float-zef 5s ease-in-out infinite; */
   }
   .screenName {
     font-size: 3rem;
-    margin: 0 0 2rem 0;
+    margin: 0 0 4rem 0;
     color: #eee;
     text-shadow: 3px 3px 0px steelblue;
     /* letter-spacing: 0.15rem; */
